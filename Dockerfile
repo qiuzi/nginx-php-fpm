@@ -64,7 +64,7 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-jpeg && \
     docker-php-ext-install gd && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip fpm cli mysqlnd curl mbstring xml opcache json bz2 bcmath && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
@@ -95,7 +95,6 @@ mkdir -p /etc/nginx/ssl/ && \
 rm -Rf /var/www/* && \
 mkdir /var/www/html/
 ADD conf/nginx-site.conf /etc/nginx/sites-available/default.conf
-ADD conf/nginx-site-ssl.conf /etc/nginx/sites-available/default-ssl.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 # tweak php-fpm config
@@ -129,18 +128,19 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-ADD scripts/pull /usr/bin/pull
-ADD scripts/push /usr/bin/push
-ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
-ADD scripts/letsencrypt-renew /usr/bin/letsencrypt-renew
-RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/letsencrypt-setup && chmod 755 /usr/bin/letsencrypt-renew && chmod 755 /start.sh
+RUN chmod 755 /start.sh
 
 # copy in code
-ADD src/ /var/www/html/
-ADD errors/ /var/www/errors
 
+ADD errors/ /var/www/errors
 
 EXPOSE 443 80
 
 WORKDIR "/var/www/html"
+RUN git clone https://github.com/qiuzi/SSPanel-Uim.git .
+RUN composer && composer install
+RUN chmod 755 -R *
+RUN chown nginx:nginx -R *
+RUN cp config/appprofile.example.php config/appprofile.php
+
 CMD ["/start.sh"]
