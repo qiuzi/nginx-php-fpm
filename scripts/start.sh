@@ -13,8 +13,8 @@ if [ "$DATABASE" = "yes" ]; then
  $ADMINPASSWD
  Y
 EOF
- php xcat ClientDownload
 fi
+ php xcat ClientDownload
 # if [ "$PORT" = "" ]; then
 #  PORT=80
 # fi
