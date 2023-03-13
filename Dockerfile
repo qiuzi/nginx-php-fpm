@@ -64,7 +64,7 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-jpeg && \
     docker-php-ext-install gd && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip mysqlnd curl mbstring opcache json bz2 bcmath && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip mysqlnd curl mbstring xml opcache bz2 bcmath && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
