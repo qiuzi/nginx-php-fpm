@@ -14,7 +14,7 @@ if [ "$DATABASE" = "yes" ]; then
  Y
 EOF
 fi
- php xcat ClientDownload
+# php xcat ClientDownload
 # if [ "$PORT" = "" ]; then
 #  PORT=80
 # fi
