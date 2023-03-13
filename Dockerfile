@@ -63,8 +63,8 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-freetype \
       --with-jpeg && \
     docker-php-ext-install gd && \
-     pip install --upgrade pip
-RUN docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip mysqlnd curl xml mbstring opcache json bz2 bcmath && \
+     pip install --upgrade pip && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
@@ -80,7 +80,7 @@ RUN docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl
     pip3 install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python3-dev make autoconf && \
-
+    apk del .sys-deps
 ADD conf/supervisord.conf /etc/supervisord.conf
 
 # Copy our nginx config
