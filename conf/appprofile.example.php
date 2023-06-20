@@ -9444,6 +9444,7 @@ $_ENV['Clash_Config'] = [
         'IP-CIDR6,2a0a:f280::/32,📲 电报信息,no-resolve',
         'DOMAIN-SUFFIX,amazon.co.jp,🔰 节点选择',
         'DOMAIN-SUFFIX,openai.com,🔰 节点选择',
+        'DOMAIN-SUFFIX,sentry.io,🔰 节点选择',
         'DOMAIN,d3c33hcgiwev3.cloudfront.net,🔰 节点选择',
         'DOMAIN,payments-jp.amazon.com,🔰 节点选择',
         'DOMAIN,s3-ap-northeast-1.amazonaws.com,🔰 节点选择',
