@@ -141,7 +141,7 @@ RUN chmod 755 /start.sh
 
 # copy in code
 
-#ADD errors/ /var/www/errors
+ADD errors/ /var/www/errors
 
 EXPOSE 443 80
 USER root
