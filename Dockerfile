@@ -142,10 +142,10 @@ RUN chmod 755 /start.sh
 # copy in code
 
 EXPOSE 443 80
-#USER root
+USER root
 WORKDIR "/var/www/html"
 RUN git clone -b 2023.4 https://github.com/Anankke/SSPanel-Uim.git .
-RUN /usr/bin/composer install
+RUN composer install
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN cp /appprofile.example.php config/appprofile.php
