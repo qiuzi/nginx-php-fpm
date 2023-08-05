@@ -70,7 +70,7 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-jpeg && \
     docker-php-ext-install gd && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     pecl install -o -f mongodb && \
@@ -141,15 +141,13 @@ RUN chmod 755 /start.sh
 
 # copy in code
 
-ADD errors/ /var/www/errors
-
 EXPOSE 443 80
-USER root
+#USER root
 WORKDIR "/var/www/html"
 RUN git clone -b 2023.4 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install --no-dev
 RUN chmod 755 -R *
-RUN chown nginx:nginx -R *
+#RUN chown nginx:nginx -R *
 RUN cp /appprofile.example.php config/appprofile.php
 
 CMD ["/start.sh"]
