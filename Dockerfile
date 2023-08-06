@@ -145,6 +145,6 @@ RUN git clone -b 2023.4 https://github.com/Anankke/SSPanel-Uim.git .
 RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
 RUN chmod 755 -R *
 RUN chown nginx:nginx -R *
-#RUN cp /appprofile.example.php config/appprofile.php
+RUN cp config/appprofile.example.php config/appprofile.php
 
 CMD ["/start.sh"]
