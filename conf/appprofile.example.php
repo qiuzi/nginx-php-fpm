@@ -3,6 +3,18 @@
 declare(strict_types=1);
 
 $_ENV['Clash_Config'] = [
+    'port' => 7890,
+    'socks-port' => 7891,
+    'allow-lan' => false,
+    'mode' => 'Rule',
+    'ipv6' => true,
+    'log-level' => 'error',
+    'external-controller' => '0.0.0.0:9090',
+];
+
+$_ENV['Clash_Group_Indexes'] = [0, 1, 2, 3, 4, 5, 8, 10, 11, 12, 15];
+
+$_ENV['Clash_Group_Config'] = [
     'proxy-groups' => [
         [
             'name' => '🔰 节点选择',
