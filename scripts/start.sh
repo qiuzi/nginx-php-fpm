@@ -5,7 +5,7 @@ if [ "$CONFIG_FILE" != "" ]; then
   echo $CONFIG_FILE | base64 -d > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
 fi
-php xcat Tool importAllSettings
+
 if [ "$DATABASE" = "yes" ]; then
  php xcat Migration new && \
  php xcat Tool importAllSettings && \
