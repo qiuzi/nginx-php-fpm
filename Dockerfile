@@ -109,6 +109,7 @@ RUN echo "cgi.fix_pathinfo=0" > ${php_vars} &&\
     echo "variables_order = \"EGPCS\""  >> ${php_vars} && \
     echo "memory_limit = 128M"  >> ${php_vars} && \
     sed -i \
+        -e "s/[www]/[nginx]/g" \
         -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" \
         -e "s/pm.max_children = 5/pm.max_children = 4/g" \
         -e "s/pm.start_servers = 2/pm.start_servers = 3/g" \
