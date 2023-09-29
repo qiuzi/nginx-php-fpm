@@ -135,7 +135,7 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 ADD scripts/start.sh /start.sh
 ADD conf/appprofile.example.php /appprofile.example.php
 RUN chmod 755 /start.sh
-
+EXPOSE 80/tcp
 # copy in code
 
 #USER root
