@@ -21,10 +21,10 @@ if [[ $lastlinephpconf == *"php_flag[display_errors]"* ]]; then
 fi
 
 # Display PHP error's or not
-if [[ "$ERRORS" != "1" ]] ; then
- echo php_flag[display_errors] = off >> /usr/local/etc/php-fpm.d/www.conf
-else
+#if [[ "$ERRORS" != "1" ]] ; then
+# echo php_flag[display_errors] = off >> /usr/local/etc/php-fpm.d/www.conf
+#else
  echo php_flag[display_errors] = on >> /usr/local/etc/php-fpm.d/www.conf
-fi
+#fi
 
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
