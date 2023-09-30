@@ -15,10 +15,16 @@ if [ "$DATABASE" = "yes" ]; then
  Y
 EOF
 fi
-# php xcat ClientDownload
-# if [ "$PORT" = "" ]; then
-#  PORT=80
-# fi
-# envsubst '$PORT' < /nginx.conf.template > /etc/nginx/nginx.conf
+lastlinephpconf="$(grep "." /usr/local/etc/php-fpm.conf | tail -1)"
+if [[ $lastlinephpconf == *"php_flag[display_errors]"* ]]; then
+ sed -i '$ d' /usr/local/etc/php-fpm.conf
+fi
+
+# Display PHP error's or not
+if [[ "$ERRORS" != "1" ]] ; then
+ echo php_flag[display_errors] = off >> /usr/local/etc/php-fpm.d/www.conf
+else
+ echo php_flag[display_errors] = on >> /usr/local/etc/php-fpm.d/www.conf
+fi
 
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
