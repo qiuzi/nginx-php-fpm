@@ -15,10 +15,10 @@ if [ "$DATABASE" = "yes" ]; then
  Y
 EOF
 fi
-lastlinephpconf="$(grep "." /usr/local/etc/php-fpm.conf | tail -1)"
-if [[ $lastlinephpconf == *"php_flag[display_errors]"* ]]; then
- sed -i '$ d' /usr/local/etc/php-fpm.conf
-fi
+#lastlinephpconf="$(grep "." /usr/local/etc/php-fpm.conf | tail -1)"
+#if [[ $lastlinephpconf == *"php_flag[display_errors]"* ]]; then
+# sed -i '$ d' /usr/local/etc/php-fpm.conf
+#fi
 
 # Display PHP error's or not
 #if [[ "$ERRORS" != "1" ]] ; then
