@@ -168,9 +168,9 @@ $_ENV['Clash_Group_Config'] = [
     ],
     'rules' => [
         'DOMAIN-SUFFIX,local,🎯 全球直连',
-        'DST-PORT,19302,🎯 全球直连'
-        'DST-PORT,3478,🎯 全球直连'
-        'DST-PORT,3479,🎯 全球直连'
+        'DST-PORT,19302,🎯 全球直连',
+        'DST-PORT,3478,🎯 全球直连',
+        'DST-PORT,3479,🎯 全球直连',
         'IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve',
         'IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve',
         'IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve',
