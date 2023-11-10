@@ -45,7 +45,18 @@ RUN echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk
     freetype-dev \
     libxslt-dev \
     gcc 
+RUN apk add --update \
+    yaml
 
+# Add depends for building
+RUN apk add --update --virtual builds \
+    libc-dev \
+    yaml-dev \
+    autoconf \
+    re2c \
+    g++ \
+    gc
+RUN printf "\n" | pecl install yaml-2.0.0 && docker-php-ext-enable yaml    
 RUN apk add --no-cache --virtual .sys-deps \
     musl-dev \
     linux-headers \
