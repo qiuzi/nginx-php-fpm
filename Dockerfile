@@ -145,6 +145,6 @@ RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
-RUN cp /appprofile.example.php config/appprofile.php
+#RUN cp /appprofile.example.php config/appprofile.php
 
 CMD ["/start.sh"]
