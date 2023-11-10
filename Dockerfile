@@ -62,7 +62,6 @@ RUN apk add --no-cache --virtual .sys-deps \
     zlib-dev \
     libxpm-dev \
     libpng \
-    yaml-dev \
     libpng-dev && \
   # Install PHP modules
     docker-php-ext-configure gd \
@@ -71,7 +70,7 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-jpeg && \
     docker-php-ext-install gd && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml yaml && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     pecl install -o -f mongodb && \
