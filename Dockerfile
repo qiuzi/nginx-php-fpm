@@ -56,7 +56,7 @@ RUN apk add --update --virtual builds \
     re2c \
     g++ \
     gc
-RUN printf "\n" | pecl install yaml-2.0.0 && docker-php-ext-enable yaml    
+#RUN printf "\n" | pecl install yaml-2.0.0 && docker-php-ext-enable yaml    
 RUN apk add --no-cache --virtual .sys-deps \
     musl-dev \
     linux-headers \
