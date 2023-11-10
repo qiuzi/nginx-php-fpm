@@ -82,7 +82,7 @@ RUN apk add --no-cache --virtual .sys-deps \
   # Install composer and certbot
     mkdir -p /var/log/supervisor && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php composer-setup.php --quiet --no-dev --install-dir=/usr/bin --filename=composer && \
+    php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer && \
     rm composer-setup.php && \  
   #  pip3 install -U pip && \
     pip3 install -U certbot && \
@@ -142,7 +142,7 @@ EXPOSE 80/tcp
 #USER root
 WORKDIR "/var/www/html"
 RUN git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
-#RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
+RUN composer install --no-dev
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
