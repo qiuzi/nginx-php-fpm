@@ -5,6 +5,7 @@ if [ "$CONFIG_FILE" != "" ]; then
   echo $CONFIG_FILE | base64 -d > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
 fi
+composer install --no-dev
 
 if [ "$DATABASE" = "yes" ]; then
  php xcat Migration new && \
