@@ -100,7 +100,7 @@ RUN apk add --no-cache --virtual .sys-deps \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python3-dev make autoconf && \
     apk del .sys-deps
-
+RUN pecl install -o -f yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini && docker-php-ext-enable yaml
 ADD conf/supervisord.conf /etc/supervisord.conf
 
 # Copy our nginx config
