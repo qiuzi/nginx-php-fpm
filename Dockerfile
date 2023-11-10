@@ -133,14 +133,14 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-ADD conf/appprofile.example.php /appprofile.example.php
+#ADD conf/appprofile.example.php /appprofile.example.php
 RUN chmod 755 /start.sh
 EXPOSE 80/tcp
 # copy in code
 
 #USER root
 WORKDIR "/var/www/html"
-RUN git clone -b 2023.4 https://github.com/Anankke/SSPanel-Uim.git .
+RUN git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
 RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
