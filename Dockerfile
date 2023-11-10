@@ -62,6 +62,7 @@ RUN apk add --no-cache --virtual .sys-deps \
     zlib-dev \
     libxpm-dev \
     libpng \
+    yaml-dev \
     libpng-dev && \
   # Install PHP modules
     docker-php-ext-configure gd \
