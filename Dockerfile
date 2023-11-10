@@ -81,6 +81,9 @@ RUN apk add --no-cache --virtual .sys-deps \
     mkdir -p /var/www/app && \
   # Install composer and certbot
     mkdir -p /var/log/supervisor && \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php --quiet --no-dev --install-dir=/usr/bin --filename=composer && \
+    rm composer-setup.php && \  
   #  pip3 install -U pip && \
     pip3 install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
@@ -115,8 +118,6 @@ RUN echo "cgi.fix_pathinfo=0" > ${php_vars} &&\
         -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" \
         -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" \
         -e "s/;pm.max_requests = 500/pm.max_requests = 800/g" \
-#        -e "s/user = www-data/user = www/g" \
-#        -e "s/group = www-data/group = www/g" \
         -e "s/;listen.mode = 0660/listen.mode = 0666/g" \
         -e "s/;listen.owner = www-data/listen.owner = www-data/g" \
         -e "s/;listen.group = www-data/listen.group = www-data/g" \
@@ -141,7 +142,7 @@ EXPOSE 80/tcp
 #USER root
 WORKDIR "/var/www/html"
 RUN git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
-RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
+#RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
