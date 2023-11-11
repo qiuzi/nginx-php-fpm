@@ -57,6 +57,10 @@ RUN apk add --update --virtual builds \
     g++ \
     gc
 #RUN printf "\n" | pecl install yaml-2.0.0 && docker-php-ext-enable yaml    
+RUN curl -sSLf \
+        -o /usr/local/bin/docker-php-ext-install \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/docker-php-ext-install
 RUN apk add --no-cache --virtual .sys-deps \
     musl-dev \
     linux-headers \
@@ -79,7 +83,7 @@ RUN apk add --no-cache --virtual .sys-deps \
       --enable-gd \
       --with-freetype \
       --with-jpeg && \
-    docker-php-ext-install gd && \
+    docker-php-ext-install gd yaml && \
      pip install --upgrade pip && \
     docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
     pecl install -o -f xdebug && \
@@ -100,7 +104,6 @@ RUN apk add --no-cache --virtual .sys-deps \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python3-dev make autoconf && \
     apk del .sys-deps
-RUN pecl install -o -f yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini && docker-php-ext-enable yaml
 ADD conf/supervisord.conf /etc/supervisord.conf
 
 # Copy our nginx config
