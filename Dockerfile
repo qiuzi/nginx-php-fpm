@@ -78,9 +78,9 @@ RUN apk add --no-cache --virtual .sys-deps \
     install-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
-    pecl install -o -f mongodb && \
+   # pecl install -o -f mongodb && \
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
-    echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini && \
+   # echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini && \
     echo "zend_extension=xdebug" > /usr/local/etc/php/conf.d/xdebug.ini && \
     docker-php-source delete && \
     mkdir -p /var/www/app && \
@@ -146,7 +146,7 @@ EXPOSE 80/tcp
 #USER root
 WORKDIR "/var/www/html"
 RUN git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
-#RUN composer install
+RUN composer install --no-dev
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
