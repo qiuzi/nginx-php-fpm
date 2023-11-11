@@ -45,22 +45,12 @@ RUN echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk
     freetype-dev \
     libxslt-dev \
     gcc 
-RUN apk add --update \
-    yaml
-
-# Add depends for building
-RUN apk add --update --virtual builds \
-    libc-dev \
-    yaml-dev \
-    autoconf \
-    re2c \
-    g++ \
-    gc
-#RUN printf "\n" | pecl install yaml-2.0.0 && docker-php-ext-enable yaml    
+    
 RUN curl -sSLf \
-        -o /usr/local/bin/docker-php-ext-install \
+        -o /usr/local/bin/install-php-ext-install \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
-    chmod +x /usr/local/bin/docker-php-ext-install
+    chmod +x /usr/local/bin/install-php-ext-install
+    
 RUN apk add --no-cache --virtual .sys-deps \
     musl-dev \
     linux-headers \
@@ -83,9 +73,9 @@ RUN apk add --no-cache --virtual .sys-deps \
       --enable-gd \
       --with-freetype \
       --with-jpeg && \
-    docker-php-ext-install gd yaml && \
+    install-php-ext-install gd yaml && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
+    install-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
     pecl install -o -f mongodb && \
