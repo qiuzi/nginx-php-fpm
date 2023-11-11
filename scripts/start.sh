@@ -1,10 +1,10 @@
 #! /bin/bash -eu
 
-if [ "$CONFIG_FILE" != "" ]; then
+#if [ "$CONFIG_FILE" != "" ]; then
   echo "[INFO] Config Panel from CONFIG_BASE64 env"
   cat /etc/secrets/config.txt > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
-fi
+#fi
 #composer global require hirak/prestissimo
 #composer install --no-dev --working-dir=/var/www/html
 
