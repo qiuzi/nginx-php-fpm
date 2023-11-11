@@ -150,6 +150,6 @@ RUN composer install --no-dev
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
-#RUN cp /appprofile.example.php config/appprofile.php
+RUN mv config/appprofile.example.php config/appprofile.php
 
 CMD ["/start.sh"]
