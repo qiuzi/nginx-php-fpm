@@ -5,8 +5,8 @@ if [ "$CONFIG_FILE" != "" ]; then
   echo $CONFIG_FILE | base64 -d > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
 fi
-composer global require hirak/prestissimo
-composer install --no-dev --working-dir=/var/www/html
+#composer global require hirak/prestissimo
+#composer install --no-dev --working-dir=/var/www/html
 
 if [ "$DATABASE" = "yes" ]; then
  php xcat Migration new && \
