@@ -73,9 +73,10 @@ RUN apk add --no-cache --virtual .sys-deps \
       --enable-gd \
       --with-freetype \
       --with-jpeg && \
-    install-php-ext-install gd yaml && \
-     pip install --upgrade pip && \
-    install-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
+    docker-php-ext-install gd && \
+    install-php-ext-install yaml && \
+    pip install --upgrade pip && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip opcache bcmath xml && \
     pecl install -o -f xdebug && \
     pecl install -o -f redis && \ 
    # pecl install -o -f mongodb && \
@@ -90,7 +91,7 @@ RUN apk add --no-cache --virtual .sys-deps \
     php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer && \
     rm composer-setup.php && \  
   #  pip3 install -U pip && \
-    pip3 install -U certbot && \
+   # pip3 install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python3-dev make autoconf && \
     apk del .sys-deps
@@ -146,7 +147,7 @@ EXPOSE 80/tcp
 #USER root
 WORKDIR "/var/www/html"
 RUN git clone https://github.com/Anankke/SSPanel-Uim.git .
-RUN composer install --no-dev
+RUN composer install
 RUN chmod 755 -R *
 #RUN chown nginx:nginx -R *
 RUN chown www-data:www-data -R *
