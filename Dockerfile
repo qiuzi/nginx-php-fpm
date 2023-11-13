@@ -139,7 +139,7 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-#ADD conf/appprofile.example.php /appprofile.example.php
+ADD conf/appprofile.example.php /appprofile.example.php
 RUN chmod 755 /start.sh
 EXPOSE 80/tcp
 # copy in code
@@ -150,6 +150,6 @@ RUN git clone https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www-data:www-data -R *
-RUN mv config/appprofile.example.php config/appprofile.php
+RUN mv /appprofile.example.php config/appprofile.php
 
 CMD ["/start.sh"]
