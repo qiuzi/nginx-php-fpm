@@ -91,7 +91,7 @@ $_ENV['SingBox_Config'] = [
             ],
         ],
         [
-            'type' => 'urltestr',
+            'type' => 'urltest',
             'tag' => 'auto',
             'outbounds' => [],
         ],        
