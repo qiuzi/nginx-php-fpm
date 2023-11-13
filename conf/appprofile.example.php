@@ -2,6 +2,176 @@
 
 declare(strict_types=1);
 
+$_ENV['SingBox_Config'] = [
+    'log' => [
+        'level' => 'error',
+    ],
+    'dns' => [
+        'servers' => [
+            [
+                'tag' => 'local',
+                'address' => 'local',
+            ],
+            [
+                'tag' => 'cloudflare',
+                'address' => 'https://1.1.1.1/dns-query',
+                'address_resolver' => 'local',
+            ],
+            [
+                'tag' => 'dnspod',
+                'address' => 'https://1.12.12.12/dns-query',
+                'detour' => 'direct',
+            ],
+        ],
+        'rules' => [
+            [
+                'outbound' => 'any',
+                'server' => 'dnspod',
+            ],
+            [
+                'clash_mode' => 'Direct',
+                'server' => 'dnspod',
+            ],
+            [
+                'clash_mode' => 'Global',
+                'server' => 'cloudflare',
+            ],
+            [
+                'type' => 'logical',
+                'mode' => 'and',
+                'rules' => [
+                    [
+                        'geosite' => 'google@cn',
+                        'invert' => true,
+                    ],
+                    [
+                        'geosite' => [
+                            'cn',
+                        ],
+                    ],
+                ],
+                'server' => 'dnspod',
+            ],
+        ],
+        'final' => 'cloudflare',
+        'strategy' => 'prefer_ipv6',
+    ],
+    'inbounds' => [
+        [
+            'type' => 'tun',
+            'inet4_address' => '172.19.0.1/30',
+            'auto_route' => true,
+            'strict_route' => true,
+            'endpoint_independent_nat' => true,
+            'udp_timeout' => 60,
+            'platform' => [
+                'http_proxy' => [
+                    'enabled' => true,
+                    'server' => '127.0.0.1',
+                    'server_port' => 8100,
+                ],
+            ],
+            'sniff' => true,
+        ],
+        [
+            'type' => 'mixed',
+            'listen' => '127.0.0.1',
+            'listen_port' => 8100,
+            'sniff' => true,
+            'domain_strategy' => 'prefer_ipv4',
+        ],
+    ],
+    'outbounds' => [
+        [
+            'type' => 'selector',
+            'tag' => 'default',
+            'default'=> 'auto',
+            'outbounds' => [
+                'auto',
+            ],
+        ],
+        [
+            'type' => 'urltestr',
+            'tag' => 'auto',
+            'outbounds' => [],
+        ],        
+        [
+            'type' => 'direct',
+            'tag' => 'direct',
+        ],
+        [
+            'type' => 'block',
+            'tag' => 'block',
+        ],
+        [
+            'type' => 'dns',
+            'tag' => 'dns',
+        ],
+    ],
+    'route' => [
+        'geoip' => [
+            'download_url' => 'https://' . $_ENV['jsdelivr_url'] . '/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.db',
+            'download_detour' => 'direct',
+        ],
+        'geosite' => [
+            'download_url' => 'https://' . $_ENV['jsdelivr_url'] . '/gh/MetaCubeX/meta-rules-dat@release/geosite-lite.db',
+            'download_detour' => 'direct',
+        ],
+        'rules' => [
+            [
+                'protocol' => 'dns',
+                'outbound' => 'dns',
+            ],
+            [
+                'network' => 'udp',
+                'port' => 53,
+                'outbound' => 'dns',
+            ],
+            [
+                'clash_mode' => 'Direct',
+                'outbound' => 'direct',
+            ],
+            [
+                'clash_mode' => 'Global',
+                'outbound' => 'default',
+            ],
+            [
+                'protocol' => 'stun',
+                'outbound' => 'block',
+            ],
+            [
+                'type' => 'logical',
+                'mode' => 'and',
+                'rules' => [
+                    [
+                        'geosite' => 'google@cn',
+                        'invert' => true,
+                    ],
+                    [
+                        'geosite' => [
+                            'cn',
+                        ],
+                        'geoip' => [
+                            'cn',
+                            'private',
+                        ],
+                    ],
+                ],
+                'outbound' => 'direct',
+            ],
+        ],
+        'auto_detect_interface' => true,
+    ],
+    'experimental' => [
+        'clash_api' => [
+            'external_controller' => '0.0.0.0:9090',
+            'store_mode' => true,
+            'store_selected' => true,
+            'cache_id' => '',
+        ],
+    ],
+];
+
 $_ENV['Clash_Config'] = [
     'port' => 7890,
     'socks-port' => 7891,
