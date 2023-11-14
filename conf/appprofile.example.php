@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+$_ENV['SingBox_Group_Indexes'] = [0, 1];
 $_ENV['SingBox_Config'] = [
     'log' => [
         'level' => 'error',
