@@ -146,7 +146,7 @@ EXPOSE 80/tcp
 
 #USER root
 WORKDIR "/var/www/html"
-RUN git clone https://github.com/Anankke/SSPanel-Uim.git .
+RUN git clone https://github.com/qiuzi/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www-data:www-data -R *
