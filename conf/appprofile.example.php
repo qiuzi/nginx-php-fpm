@@ -9459,6 +9459,8 @@ $_ENV['Clash_Group_Config'] = [
         'IP-CIDR6,2001:b28:f23c::/48,📲 电报信息,no-resolve',
         'IP-CIDR6,2a0a:f280::/32,📲 电报信息,no-resolve',
         'DOMAIN-SUFFIX,amazon.co.jp,🔰 节点选择',
+        'DOMAIN-SUFFIX,oaistatic.com,🔰 节点选择',
+        'DOMAIN-SUFFIX,oaiusercontent.com,🔰 节点选择',
         'DOMAIN-SUFFIX,openai.com,🔰 节点选择',
         'DOMAIN-SUFFIX,sentry.io,🔰 节点选择',
         'DOMAIN,d3c33hcgiwev3.cloudfront.net,🔰 节点选择',
