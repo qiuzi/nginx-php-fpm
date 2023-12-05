@@ -9462,6 +9462,8 @@ $_ENV['Clash_Group_Config'] = [
         'DOMAIN-SUFFIX,oaistatic.com,🔰 节点选择',
         'DOMAIN-SUFFIX,oaiusercontent.com,🔰 节点选择',
         'DOMAIN-SUFFIX,openai.com,🔰 节点选择',
+        'DOMAIN-SUFFIX,pypi.org,🔰 节点选择',
+        'DOMAIN-SUFFIX,huggingface.co,🔰 节点选择',
         'DOMAIN-SUFFIX,sentry.io,🔰 节点选择',
         'DOMAIN,d3c33hcgiwev3.cloudfront.net,🔰 节点选择',
         'DOMAIN,payments-jp.amazon.com,🔰 节点选择',
