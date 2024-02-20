@@ -2,7 +2,7 @@
 
 if [ "$CONFIG_FILE" != "" ]; then
   echo "[INFO] Config Panel from CONFIG_BASE64 env"
-  echo $CONFIG_FILE | base64 -d > config/.config.php
+  cat /etc/secrets/config.txt > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
 fi
 
