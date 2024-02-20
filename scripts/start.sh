@@ -1,10 +1,8 @@
 #! /bin/bash -eu
 
-if [ "$CONFIG_FILE" != "" ]; then
   echo "[INFO] Config Panel from CONFIG_BASE64 env"
   cat /etc/secrets/config.txt > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
-fi
 
 if [ "$DATABASE" = "yes" ]; then
  php xcat Migration new && \
