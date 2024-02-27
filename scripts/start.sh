@@ -22,7 +22,6 @@ fi
 #if [[ "$ERRORS" != "1" ]] ; then
 # echo php_flag[display_errors] = off >> /usr/local/etc/php-fpm.d/www.conf
 #else
- echo php_flag[display_errors] = on >> /usr/local/etc/php-fpm.d/www.conf
 #fi
 
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
