@@ -24,7 +24,7 @@ EXPOSE 80/tcp
 
 #USER root
 WORKDIR "/var/www/html"
-RUN git clone -b 2023.7 https://github.com/Anankke/SSPanel-Uim.git .
+RUN git clone https://github.com/Anankke/SSPanel-Uim.git .
 RUN wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install --no-dev
 RUN chmod 755 -R *
 RUN chown www-data:www-data -R *
