@@ -14,9 +14,9 @@ RUN echo php_flag[display_errors] = on >> /etc/php/8.3/fpm/php-fpm.conf
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-ADD scripts/nginx-site.conf /etc/nginx/sites-available/default
-ADD scripts/nginx.conf /etc/nginx/nginx.conf
-ADD scripts/supervisord.conf /etc/supervisord.conf
+ADD conf/nginx-site.conf /etc/nginx/sites-available/default
+ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD conf/supervisord.conf /etc/supervisord.conf
 ADD conf/appprofile.example.php /appprofile.example.php
 RUN chmod 755 /start.sh
 EXPOSE 80/tcp
