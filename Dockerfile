@@ -10,7 +10,7 @@ RUN apt update \
     && mkdir -p /var/www/html
 RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
 RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
-
+RUN echo php_flag[display_errors] = on >> /etc/php/8.3/fpm/php-fpm.conf
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
