@@ -11,7 +11,7 @@ RUN apt update \
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
-ADD scripts/nginx-site.conf /etc/nginx/sites-enabled/default
+ADD scripts/nginx-site.conf /etc/nginx/sites-available/default
 ADD scripts/nginx.conf /etc/nginx/nginx.conf
 ADD scripts/supervisord.conf /etc/supervisord.conf
 ADD conf/appprofile.example.php /appprofile.example.php
