@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ENV TZ=Asia/Shanghai
 RUN apt update \
-    && apt install -y wget git nginx \
+    && apt install -y wget git nginx supervisor \
     && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apt install -y php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip} \
