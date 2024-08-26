@@ -6,7 +6,7 @@
 
 if [ "$DATABASE" = "yes" ]; then
  php xcat Migration new && \
- php xcat Tool importAllSettings && \
+ php xcat Tool importSetting && \
  php xcat Tool createAdmin <<EOF
  $ADMINEMAIL
  $ADMINPASSWD
