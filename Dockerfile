@@ -5,11 +5,11 @@ RUN apt update
 RUN apt install -y wget nginx supervisor git
 RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN echo ${TZ} > /etc/timezone
-RUN apt install -y php8.3-bcmath php8.3-bz2 php8.3-cli php8.3-common php8.3-curl php8.3-fpm php8.3-gd php8.3-igbinary php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-readline php8.3-redis php8.3-xml php8.3-yaml php8.3-zip
+RUN apt install -y php8.2-bcmath php8.2-bz2 php8.2-cli php8.2-common php8.2-curl php8.2-fpm php8.2-gd php8.2-igbinary php8.2-mbstring php8.2-mysql php8.2-opcache php8.2-readline php8.2-redis php8.2-xml php8.2-yaml php8.2-zip
 RUN rm -rf /var/lib/apt/lists/* /var/www/html/*
     
-RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
-RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
+RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/cli/php.ini
 RUN echo php_flag[display_errors] = on >> /etc/php/8.3/fpm/php-fpm.conf
 
 # Add Scripts
