@@ -5,7 +5,7 @@ RUN apt update
 RUN apt install -y wget nginx supervisor git
 RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN echo ${TZ} > /etc/timezone
-RUN apt install -y php8.2-bcmath php8.2-bz2 php8.2-cli php8.2-common php8.2-curl php8.2-fpm php8.2-gd php8.2-igbinary php8.2-mbstring php8.2-mysql php8.2-opcache php8.2-readline php8.2-redis php8.2-xml php8.2-yaml php8.2-zip
+RUN apt install -y php8.1-bcmath php8.1-bz2 php8.1-cli php8.1-common php8.1-curl php8.1-fpm php8.1-gd php8.1-igbinary php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-readline php8.1-redis php8.1-xml php8.1-yaml php8.1-zip
 RUN rm -rf /var/lib/apt/lists/* /var/www/html/*
     
 RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
