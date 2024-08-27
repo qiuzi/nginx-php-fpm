@@ -16,7 +16,7 @@ RUN echo php_flag[display_errors] = on >> /etc/php/8.1/fpm/php-fpm.conf
 ADD scripts/start.sh /start.sh
 ADD conf/10-opcache.ini /etc/php/8.1/fpm/conf.d/10-opcache.ini
 ADD conf/nginx-site.conf /etc/nginx/sites-available/default
-# ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/supervisord.conf /etc/supervisord.conf
 ADD conf/appprofile.example.php /appprofile.example.php
 RUN chmod 755 /start.sh
