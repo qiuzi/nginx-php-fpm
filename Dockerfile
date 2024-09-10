@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ENV TZ=Asia/Shanghai
 RUN apt update
-RUN apt install -y wget nginx supervisor git redis
+RUN apt install -y wget nginx supervisor redis git
 RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN echo ${TZ} > /etc/timezone
 RUN apt install -y php8.3-bcmath php8.3-bz2 php8.3-cli php8.3-common php8.3-curl php8.3-fpm php8.3-gd php8.3-igbinary php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-readline php8.3-redis php8.3-xml php8.3-yaml php8.3-zip
