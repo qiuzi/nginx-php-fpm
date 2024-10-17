@@ -52,14 +52,23 @@ $_ENV['SingBox_Config'] = [
     'dns' => [
         'servers' => [
             [
-                'tag' => 'proxy',
-                'address' => 'tls://1.1.1.1/',
-                'detour' => 'select',
+                'tag' => 'local',
+                'address' => 'local',
+                'detour' => 'direct',
             ],
             [
-                'tag' => 'local',
-                'address' => 'h3://223.5.5.5/dns-query',
+                'tag' => 'resolver',
+                'address' => 'quic://223.6.6.6',
+                'strategy' => 'ipv4_only',
                 'detour' => 'direct',
+            ],
+            [
+                'tag' => 'cloudflare',
+                'address' => 'tls://one.one.one.one',
+                'address_resolver' => 'resolver',
+                'address_strategy' => 'ipv4_only',
+                'strategy' => 'prefer_ipv6',
+                'detour' => 'select',
             ],
             [
                 'tag' => 'block',
@@ -70,22 +79,22 @@ $_ENV['SingBox_Config'] = [
             [
                 'outbound' => 'any',
                 'server' => 'local',
-                'disable_cache' => true,
             ],
             [
                 'clash_mode' => 'Global',
-                'server' => 'proxy',
-            ],
-            [
-                'clash_mode' => 'Direct',
-                'server' => 'local',
+                'server' => 'cloudflare',
             ],
             [
                 'rule_set' => 'geosite-cn',
                 'server' => 'local',
             ],
+            [
+                'clash_mode' => 'Direct',
+                'server' => 'local',
+            ],
         ],
-        'final' => 'proxy',
+        'final' => 'cloudflare',
+        'disable_cache' => true,
         'independent_cache' => true,
     ],
     'inbounds' => [
@@ -152,19 +161,18 @@ $_ENV['SingBox_Config'] = [
                 'outbound' => 'select',
             ],
             [
+                'rule_set' => [
+                    'geosite-cn',
+                    'geoip-cn',
+                ],
+                'outbound' => 'direct',
+            ],
+            [
                 'protocol' => 'stun',
                 'outbound' => 'block',
             ],
             [
                 'ip_is_private' => true,
-                'outbound' => 'direct',
-            ],
-            [
-                'rule_set' => 'geoip-cn',
-                'outbound' => 'direct',
-            ],
-            [
-                'rule_set' => 'geosite-cn',
                 'outbound' => 'direct',
             ],
         ],
