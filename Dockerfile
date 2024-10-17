@@ -19,6 +19,7 @@ RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chro
 RUN sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
 RUN echo php_flag[display_errors] = on >> /etc/php/8.3/fpm/php-fpm.conf
 RUN sed -i -e's/;daemonize.*/daemonize = no/g' /etc/php/8.3/fpm/php-fpm.conf
+RUN mkdir -p /run/php
 # Add Scripts
 ADD scripts/start.sh /start.sh
 ADD conf/10-opcache.ini /etc/php/8.3/fpm/conf.d/10-opcache.ini
