@@ -6,7 +6,7 @@
   DATABASE=`php xcat Migration new |grep new`
   php xcat Tool importSetting
   
-if [ -n "$DATABASE" ]; then
+if [ -z "$DATABASE" ]; then
  php xcat Tool createAdmin <<EOF
  $ADMINEMAIL
  $ADMINPASSWD
