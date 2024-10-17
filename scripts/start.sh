@@ -4,7 +4,8 @@
   cat /etc/secrets/config.txt > config/.config.php
   echo "[INFO] Config Panel from CONFIG_BASE64 completed"
   DATABASE=`php xcat Migration new |grep new`
-
+  php xcat Tool importSetting
+  
 if [ -n "$DATABASE" ]; then
  php xcat Tool createAdmin <<EOF
  $ADMINEMAIL
