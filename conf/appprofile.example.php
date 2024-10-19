@@ -58,7 +58,7 @@ $_ENV['SingBox_Config'] = [
             'tag' => 'auto',
             'type' => 'urltest',
             'outbounds' => [],
-            'url' => 'https://cp.cloudflare.com/generate_204',
+            'url' => 'http://www.gstatic.com/generate_204',
             'interval' => '3m',
             'tolerance' => 50,
             'idle_timeout' => '30m',
@@ -95,7 +95,7 @@ $_ENV['Clash_Group_Config'] = [
         [
             'name' => '♻️ 自动选择',
             'type' => 'url-test',
-            'url' => 'http://cp.cloudflare.com/generate_204',
+            'url' => 'http://www.gstatic.com/generate_204',
             'interval' => 300,
             // 插入节点名称
             'proxies' => [
