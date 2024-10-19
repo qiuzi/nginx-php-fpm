@@ -50,7 +50,6 @@ $_ENV['SingBox_Config'] = [
             'type' => 'selector',
             'default' => 'auto',
             'outbounds' => [
-            'interrupt_exist_connections' => false,
                 'auto',
             ],
         ],
