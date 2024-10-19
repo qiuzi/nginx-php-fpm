@@ -50,9 +50,9 @@ $_ENV['SingBox_Config'] = [
             'type' => 'selector',
             'default' => 'auto',
             'outbounds' => [
+            'interrupt_exist_connections' => false,
                 'auto',
             ],
-            'interrupt_exist_connections' => true,
         ],
         [
             'tag' => 'auto',
@@ -62,7 +62,7 @@ $_ENV['SingBox_Config'] = [
             'interval' => '3m',
             'tolerance' => 50,
             'idle_timeout' => '30m',
-            'interrupt_exist_connections' => true,
+            'interrupt_exist_connections' => false,
         ],
     ],
 ];
